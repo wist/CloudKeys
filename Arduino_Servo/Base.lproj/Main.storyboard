@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,44 +17,51 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="hFf-dQ-gaQ">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="hFf-dQ-gaQ">
+                                <frame key="frameInset" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bluetooth_Disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="jhy-Gq-4R0">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Bluetooth_Disconnected" translatesAutoresizingMaskIntoConstraints="NO" id="jhy-Gq-4R0">
+                                <frame key="frameInset" width="240" height="128"/>
                             </imageView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="180" translatesAutoresizingMaskIntoConstraints="NO" id="Sqp-k5-LnE">
-                                <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="38" y="192" width="330" height="31"/>
-                                </variation>
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="180" translatesAutoresizingMaskIntoConstraints="NO" id="Sqp-k5-LnE">
+                                <frame key="frameInset" minX="38" minY="192" width="330" height="31"/>
                                 <connections>
                                     <action selector="positionSliderChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="P9t-7D-raP"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwK-ju-TFG">
-                                <rect key="frame" x="34" y="193" width="67" height="30"/>
+                                <frame key="frameInset" minX="34" minY="193" width="67" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="EXECUTE"/>
                                 <connections>
                                     <action selector="sendCMD:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eC7-M4-bfg"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="&gt;@TEgg#" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MAA-8B-CyC">
-                                <rect key="frame" x="34" y="155" width="262" height="30"/>
+                                <frame key="frameInset" minX="34" minY="155" width="262" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgR-jp-Dqu">
-                                <rect key="frame" x="34" y="236" width="262" height="21"/>
+                                <frame key="frameInset" minX="34" minY="236" width="262" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KP8-HC-Q6h">
+                                <frame key="frameInset" minX="218" minY="97" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="NWSwitch:" destination="vXZ-lx-hvc" eventType="valueChanged" id="LBQ-9r-Spl"/>
+                                </connections>
+                            </switch>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="hFf-dQ-gaQ" secondAttribute="trailing" constant="-16" id="0ce-bt-KS4">
                                 <variation key="widthClass=compact" constant="0.0"/>
@@ -85,8 +93,6 @@
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Ri4-rB-dzS"/>
-                                <exclude reference="25v-DI-MXM"/>
-                                <exclude reference="jyW-fI-fJR"/>
                                 <exclude reference="0ce-bt-KS4"/>
                                 <exclude reference="3S5-P3-dYN"/>
                                 <exclude reference="E5K-ez-iTZ"/>
@@ -99,6 +105,8 @@
                                 <exclude reference="p13-L5-9ix"/>
                                 <exclude reference="waY-NG-cHP"/>
                                 <exclude reference="qFv-3j-DWZ"/>
+                                <exclude reference="25v-DI-MXM"/>
+                                <exclude reference="jyW-fI-fJR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -109,8 +117,6 @@
                             </mask>
                             <mask key="constraints">
                                 <include reference="Ri4-rB-dzS"/>
-                                <exclude reference="25v-DI-MXM"/>
-                                <exclude reference="jyW-fI-fJR"/>
                                 <exclude reference="0ce-bt-KS4"/>
                                 <exclude reference="3S5-P3-dYN"/>
                                 <exclude reference="E5K-ez-iTZ"/>
@@ -123,10 +129,11 @@
                                 <exclude reference="p13-L5-9ix"/>
                                 <include reference="waY-NG-cHP"/>
                                 <include reference="qFv-3j-DWZ"/>
+                                <exclude reference="25v-DI-MXM"/>
+                                <exclude reference="jyW-fI-fJR"/>
                             </mask>
                         </variation>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="StatusRespond" destination="ZgR-jp-Dqu" id="TWs-j5-cs5"/>
                         <outlet property="comandEx" destination="MAA-8B-CyC" id="WhV-5Y-Bll"/>

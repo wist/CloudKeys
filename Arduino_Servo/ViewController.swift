@@ -15,7 +15,7 @@ class ViewController: UIViewController {
   @IBOutlet weak var StatusRespond: UILabel!
     
     
-  var timerTXDelay: NSTimer?
+  var timerTXDelay: Timer?
  
   var allowTX = true
   var lastPosition: UInt8 = 255
@@ -29,17 +29,17 @@ class ViewController: UIViewController {
     positionSlider.removeFromSuperview()
     positionSlider.removeConstraints(self.view.constraints)
     positionSlider.translatesAutoresizingMaskIntoConstraints = true
-    positionSlider.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+    positionSlider.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
     positionSlider.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 150.0)
     superView?.addSubview(self.positionSlider)
-    positionSlider.autoresizingMask = [UIViewAutoresizing.FlexibleLeftMargin, UIViewAutoresizing.FlexibleRightMargin]
-    positionSlider.center = CGPointMake(view.bounds.midX, view.bounds.midY)
+    positionSlider.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin]
+    positionSlider.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
     
     // Set thumb image on slider
-    positionSlider.setThumbImage(UIImage(named: "Oval"), forState: UIControlState.Normal)
+    positionSlider.setThumbImage(UIImage(named: "Oval"), for: UIControlState())
     
     // Watch Bluetooth connection
-    NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.connectionChanged(_:)), name: BLEServiceChangedStatusNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(ViewController.connectionChanged(_:)), name: NSNotification.Name(rawValue: BLEServiceChangedStatusNotification), object: nil)
     
     // Start the Bluetooth discovery process
     btDiscoverySharedInstance
@@ -47,16 +47,16 @@ class ViewController: UIViewController {
     }
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self, name: BLEServiceChangedStatusNotification, object: nil)
+    NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: BLEServiceChangedStatusNotification), object: nil)
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
     self.stopTimerTXDelay()
   }
   
-  @IBAction func positionSliderChanged(sender: UISlider) {
+  @IBAction func positionSliderChanged(_ sender: UISlider) {
     if sender.value >= 75 {
         sender.setValue(180, animated: true)
         self.sendPosition(UInt8(sender.value))
@@ -75,11 +75,11 @@ class ViewController: UIViewController {
         }
     }
 
-  func connectionChanged(notification: NSNotification) {
+  func connectionChanged(_ notification: Notification) {
     // Connection status changed. Indicate on GUI.
-    let userInfo = notification.userInfo as! [String: Bool]
+    let userInfo = (notification as NSNotification).userInfo as! [String: Bool]
 //    print("user info: \(userInfo)")
-    dispatch_async(dispatch_get_main_queue(), {
+    DispatchQueue.main.async(execute: {
       // Set image based on connection status
       if let isConnected: Bool = userInfo["isConnected"] {
         if isConnected {
@@ -93,7 +93,7 @@ class ViewController: UIViewController {
     });
   }
   
-  func sendPosition(position: UInt8) {
+  func sendPosition(_ position: UInt8) {
     // Valid position range: 0 to 180
     
     if !self.allowTX {
@@ -116,14 +116,37 @@ class ViewController: UIViewController {
       // Start delay timer
       self.allowTX = false
       if timerTXDelay == nil {
-        timerTXDelay = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(ViewController.timerTXDelayElapsed), userInfo: nil, repeats: false)
+        timerTXDelay = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(ViewController.timerTXDelayElapsed), userInfo: nil, repeats: false)
       }
     }
   }
   
     @IBOutlet weak var comandEx: UITextField!
   
-    @IBAction func sendCMD(sender: AnyObject) {
+    @IBAction func NWSwitch(_ sender: UISwitch) {
+        
+        if sender.isOn {
+//            sender.setValue(180, animated: true)
+//            self.sendPosition(UInt8(sender.value))
+            if let bleService = btDiscoverySharedInstance.bleService {
+                StatusRespond.text = bleService.writePosition2(">KTEgg1#")
+                ksts = 1
+            }
+            
+            
+        }else if ksts == 1{
+//            func sender.setOff(0, animated: true)
+            if let bleService = btDiscoverySharedInstance.bleService {
+                StatusRespond.text = bleService.writePosition2(">KTEgg0#")
+                ksts = 0
+            }
+        }
+
+        
+    }
+
+    
+    @IBAction func sendCMD(_ sender: AnyObject) {
         
         let dtt: String = String(comandEx.text!)
         if let bleService = btDiscoverySharedInstance.bleService {
